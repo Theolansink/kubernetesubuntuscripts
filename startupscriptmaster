@@ -10,9 +10,6 @@ sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt-get install kubeadm kubelet kubectl -y
 sudo hostnamectl set-hostname kubemaster
 sudo swapoff -a
-echo "192.168.1.170 kubemaster" >>/etc/hosts
-echo "192.168.1.171 node1" >>/etc/hosts
-echo "192.168.1.172 node2" >>/etc/hosts
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 # (moet nuet ip master zijn. Geen overlap met node network)
 mkdir -p $HOME/.kube
@@ -21,8 +18,8 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 # onderstaande regels creeren een scripot om een eerste kubernetes applicatie te bouwen
 # is een webserver die Hello Kubernetes! antwoord.
-echo 'kubectl apply -f https://k8s.io/examples/service/load-balancer-example.yaml' > /createwebapp
-echo 'kubectl expose deployment hello-world --type=NodePort --name=my-service' >> /createwebapp
+# command to create first webapp: 'kubectl apply -f https://k8s.io/examples/service/load-balancer-example.yaml' > /createwebapp
+# next command and webapp is exposed 'kubectl expose deployment hello-world --type=NodePort --name=my-service' >> /createwebapp
 
 # the file is created with Notepad++
 # kies Edit: End of Line Conversion en kies Linux. 

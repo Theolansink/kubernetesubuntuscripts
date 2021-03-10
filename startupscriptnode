@@ -10,9 +10,7 @@ sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt-get install kubeadm kubelet kubectl -y
 sudo hostnamectl set-hostname node1
 sudo swapoff -a
-echo "192.168.1.170 kubemaster" >>/etc/hosts
-echo "192.168.1.171 node1" >>/etc/hosts
-echo "192.168.1.172 node2" >>/etc/hosts
+
 
 # the file is created with Notepad++
 # kies Edit: End of Line Conversion en kies Linux. 
