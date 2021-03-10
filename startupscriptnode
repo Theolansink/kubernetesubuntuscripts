@@ -1,0 +1,19 @@
+#! /bin/bash
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install docker.io -y
+sudo usermod -aG docker $USER
+sudo systemctl start docker
+sudo systemctl enable docker
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+sudo apt-get install kubeadm kubelet kubectl -y
+sudo hostnamectl set-hostname node1
+sudo swapoff -a
+echo "192.168.1.170 kubemaster" >>/etc/hosts
+echo "192.168.1.171 node1" >>/etc/hosts
+echo "192.168.1.172 node2" >>/etc/hosts
+
+# the file is created with Notepad++
+# kies Edit: End of Line Conversion en kies Linux. 
+# anders windows Carriage Returns in document end at werkt niet
